@@ -75,3 +75,12 @@ git clone --recursive  --depth 1 --branch vX.Y.Z https://github.com/STMicroelect
 ## Troubleshooting
 
 Please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) guide.
+
+## Package
+
+This fork has [conan](https://conan.io/) recipe for packaging CMSIS for STM32F103C8
+(blue pill) board. This package consists of:
+
+* static `libcmsis.a` library compiled from startup ASM source and `system_stm32f103xb.c`;
+* linker script;
+* all required headers.
