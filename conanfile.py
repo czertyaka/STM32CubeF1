@@ -3,6 +3,7 @@ from conan import ConanFile
 from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout
 from conan.errors import ConanInvalidConfiguration
 
+
 class cmsisRecipe(ConanFile):
     name = "cmsis"
     version = "5.1"
@@ -14,13 +15,10 @@ class cmsisRecipe(ConanFile):
     def validate(self):
         if self.settings.os != "baremetal":
             raise ConanInvalidConfiguration(
-                "CMSIS could not be built for "
-                "profile with operting system"
+                "CMSIS could not be built for profile with operting system"
             )
         if not self.settings.os.vendor.board:
-            raise ConanInvalidConfiguration(
-                "CMSIS requires a board to be specified"
-            )
+            raise ConanInvalidConfiguration("CMSIS requires a board to be specified")
 
     def layout(self):
         cmake_layout(self)
@@ -48,7 +46,9 @@ class cmsisRecipe(ConanFile):
         self.cpp_info.components["startup"].set_property("cmake_target_name", "startup")
 
         self.cpp_info.components["linker_script"].libs = []
-        self.cpp_info.components["linker_script"].set_property("cmake_target_name", "linker_script")
+        self.cpp_info.components["linker_script"].set_property(
+            "cmake_target_name", "linker_script"
+        )
         self.cpp_info.components["linker_script"].includedirs = [
             os.path.join(self.package_folder, "linker")
         ]
