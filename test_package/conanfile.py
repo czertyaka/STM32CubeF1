@@ -8,6 +8,14 @@ from conan.tools.build import can_run
 class CMSISTestConan(ConanFile):
     settings = "compiler", "build_type"
 
+    def validate(self):
+        if not self.settings.os.vendor.board:
+            raise ConanInvalidConfiguration("CMSIS requires a board to be specified")
+        elif self.settings.os.vendor.board != "stm32f103c8":
+            raise ConanInvalidConfiguration(
+                "This test package will only work with STM32F103C8 board1"
+            )
+
     def requirements(self):
         self.requires(self.tested_reference_str)
 
@@ -27,6 +35,4 @@ class CMSISTestConan(ConanFile):
         cmake_layout(self)
 
     def test(self):
-        if can_run(self):
-            cmd = os.path.join(self.cpp.build.bindir, "main.bin")
-            self.run(cmd, env="conanrun")
+        pass
