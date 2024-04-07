@@ -6,7 +6,7 @@ from conan.tools.build import can_run
 
 
 class CMSISTestConan(ConanFile):
-    settings = "compiler", "build_type"
+    settings = "os", "compiler", "build_type", "arch"
 
     def validate(self):
         if not self.settings.os.vendor.board:
