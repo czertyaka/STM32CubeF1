@@ -15,7 +15,7 @@ class cmsisRecipe(ConanFile):
     def validate(self):
         if self.settings.os != "baremetal":
             raise ConanInvalidConfiguration(
-                "CMSIS could not be built for profile with operting system"
+                "CMSIS could not be built for profile with operating system"
             )
         elif not self.settings.os.vendor.board:
             raise ConanInvalidConfiguration("CMSIS requires a board to be specified")
